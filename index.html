@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html class=no-js>
+<head>
+    <meta charset=utf-8>
+    <title>SA Professional Workshop Site</title>
+    <meta name=description content="">
+    <meta name=viewport content="width=device-width"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel=stylesheet href=styles/vendor.css>
+    <link rel=stylesheet href=styles/main.css>
+    <body>
+            <!--[if lt IE 10]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+          <![endif]
+        -->
+            <div class=container>
+                <div class="text-center">
+                    <h2 class="alert-info">US Domestic Ontime Departure Data Viewer</h2>
+                    <p class="lead">Lambda-backed Redshift queries</p>
+                </div>
+                <div class=error id=err></div>
+                <form id=queryForm class=form-horizontal>
+                    <div class=form-group>
+                        <label class="col-sm-2 control-label" for=redshiftEndpoint>Endpoint</label>
+                        <div class=col-sm-10>
+                            <input id=redshiftEndpoint class=form-control required value=ontime.cvb3lrtdfr1m.ap-southeast-2.redshift.amazonaws.com>
+                        </div>
+                    </div>
+                    <div class=form-group>
+                        <label class="col-sm-2 control-label" for=redshiftUser>Username</label>
+                        <div class=col-sm-10>
+                            <input id=redshiftUser class=form-control required value=master>
+                        </div>
+                    </div>
+                    <div class=form-group>
+                        <label class="col-sm-2 control-label" for=redshiftPassword>Password</label>
+                        <div class=col-sm-10>
+                            <input id=redshiftPassword type=password class=form-control required value=Redshift123>
+                        </div>
+                    </div>
+                    <div class=form-group>
+                        <label class="col-sm-2 control-label" for=redshiftPort>Port</label>
+                        <div class=col-sm-10>
+                            <input id=redshiftPort type=number class=form-control required value=5439>
+                        </div>
+                    </div>
+                    <div class=form-group>
+                        <label class="col-sm-2 control-label" for=redshiftDatabase>Database</label>
+                        <div class=col-sm-10>
+                            <input id=redshiftDatabase class=form-control required value=ontime>
+                        </div>
+                    </div>
+                    <div class=form-group>
+                        <label class="col-sm-2 control-label" for=redshiftDatabase>Query</label>
+                        <div class=col-sm-10>
+                            <select id="redshiftQuery" class=form-control>
+                                <option label="Top 10 airports most prone to departure delays" value="1">Top 10 airports most prone to departure delays</option>
+                                <option label="Top 10 airports most prone to arrival delays" value="2">Top 10 airports most prone to arrival delays</option>
+                                <option label="Weeks most susceptible to departure/arrival delay" value="3">Weeks most susceptible to departure/arrival delay</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class=form-group>
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <button id=queryBtn type=submit class="btn btn-danger">Query Redshift</button>
+                        </div>
+                    </div>
+</form>
+                <div class="col-sm-12 text-center hidden" id=chart>                    
+                    <svg width=100% height=300 id="barChart">
+                </div>
+                <div class="col-sm-18 text-center hidden" id=tryAgain>
+                    <button id=queryAgain type=button class="btn btn-default">New Query</button>
+                </div>
+            </div>
+            <script src=scripts/vendor.js></script>
+            <script src=scripts/plugins.js></script>
+            <script src=scripts/main.js></script>
